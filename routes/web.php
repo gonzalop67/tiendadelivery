@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
-    Route::resource('usuarios', 'Admin\UsuariosController', ['as' => 'admin']);
-    /* Route::resource('categorias', 'Admin\CategoriasController', ['as' => 'admin']);
-    Route::resource('subcategorias', 'Admin\SubcategoriasController', ['as' => 'admin']);
+    Route::resource('/usuarios', 'Admin\UsuariosController', ['as' => 'admin']);
+    Route::resource('/categorias', 'Admin\CategoriasController', ['as' => 'admin']);
+    /* Route::resource('subcategorias', 'Admin\SubcategoriasController', ['as' => 'admin']);
     Route::resource('productos', 'Admin\ProductosController', ['as' => 'admin']);
     Route::resource('publicaciones', 'Admin\PublicacionesController', ['as' => 'admin']);
     Route::resource('portadas', 'Admin\PortadasController', ['as' => 'admin']); */
