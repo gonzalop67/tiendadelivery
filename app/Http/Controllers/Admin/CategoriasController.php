@@ -5,14 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Categorias;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoriasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $categorias = Categorias::all();
@@ -20,22 +16,11 @@ class CategoriasController extends Controller
         return view("admin.categorias.index", compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("admin.categorias.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $categoria = new Categorias($request->all());
@@ -60,6 +45,13 @@ class CategoriasController extends Controller
         $categoria = Categorias::whereId($id)->first();
 
         return view("admin.categorias.edit", compact('categoria'));
+    }
+
+    public function show($id)
+    {
+        Session::put('categorias_id', $id);
+
+        return redirect('/admin/subcategorias');
     }
 
     public function update(Request $request, $id)
@@ -87,6 +79,8 @@ class CategoriasController extends Controller
     public function destroy($id)
     {
         $categoria = Categorias::findOrFail($id);
+        if (file_exists(public_path('/img/categorias/'.$categoria->urlfoto)))
+            unlink(public_path('/img/categorias/'.$categoria->urlfoto));
         $categoria->delete();
 
         return redirect()->route('admin.categorias.index');

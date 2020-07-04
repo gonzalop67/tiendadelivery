@@ -22,7 +22,7 @@
                             <td>{{$r->estado?'Sí':'No'}}</td>
                             <td>
                                 <a class="btn btn-info" href="">Pedidos</a>
-                                <a class="btn btn-success" href="{{route('admin.usuarios.edit', $r->id)}}">Editar</a>
+                                <a class="btn btn-warning" href="{{route('admin.usuarios.edit', $r->id)}}">Editar</a>
                             </td>
                         </tr>
                     @endforeach
