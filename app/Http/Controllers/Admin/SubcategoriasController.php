@@ -51,7 +51,7 @@ class SubcategoriasController extends Controller
     {
         Session::put('subcategorias_id', $id);
 
-        return redirect('/admin/subcategorias');
+        return redirect('/admin/productos');
     }
 
     public function update(Request $request, $id)
